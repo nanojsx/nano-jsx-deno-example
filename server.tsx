@@ -38,15 +38,6 @@ const App = () => (
 const app = renderSSR(<App />)
 const { body, head, footer } = Helmet.SSR(app)
 
-console.log('head', head)
-console.log('footer', footer)
-
-const hasWindow = typeof window !== 'undefined' && window.document
-const isDeno = typeof Deno !== 'undefined'
-
-const isSSR = !hasWindow || isDeno
-console.log('isSSR', isSSR)
-
 const html = `
 <!DOCTYPE html>
 <html lang="en">

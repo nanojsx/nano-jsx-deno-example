@@ -3,7 +3,6 @@ import { Component } from 'https://deno.land/x/nano_jsx@v0.0.11/deno_lib/compone
 
 class Comments extends Component {
   render() {
-    console.log('render Comments')
     return (
       <ul>
         {this.props.comments.map((comment: any) => {
