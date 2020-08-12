@@ -10,6 +10,8 @@ const [_, clientJs] = await Deno.bundle('./client.tsx', undefined, {
   jsxFactory: 'h'
 })
 
+const comments = ['server side comment one']
+
 const App = () => (
   <div>
     <Helmet>
@@ -26,7 +28,7 @@ const App = () => (
 
     <h1>Hello nano!</h1>
     <div id="comments">
-      <Comments comments={['ssr comment 1']} />
+      <Comments comments={comments} />
     </div>
   </div>
 )

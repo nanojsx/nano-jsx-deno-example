@@ -6,12 +6,10 @@ import {
 
 import Comments from './Comments.tsx'
 
+const comments = ['client side comment one', 'client side comment two']
+
 const start = () => {
-  console.log('start')
-  hydrate(
-    <Comments comments={['client side comment']} />,
-    document.getElementById('comments')
-  )
+  hydrate(<Comments comments={comments} />, document.getElementById('comments'))
 }
 
 window.addEventListener('load', event => {
