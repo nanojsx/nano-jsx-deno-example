@@ -1,5 +1,3 @@
-run:  
-deno run --allow-net -c tsconfig.json index.tsx
+# Isomorphic Nano JSX with Deno
 
-bundle:
-deno bundle -c tsconfig.json hydrate.tsx hydrate.bundle.js
+## Server Side Rendering with Partial Hydration
