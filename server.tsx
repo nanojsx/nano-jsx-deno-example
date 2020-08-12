@@ -39,6 +39,12 @@ const { body, head, footer } = Helmet.SSR(app)
 console.log('head', head)
 console.log('footer', footer)
 
+const hasWindow = typeof window !== 'undefined' && window.document
+const isDeno = typeof Deno !== 'undefined'
+
+const isSSR = !hasWindow || isDeno
+console.log('isSSR', isSSR)
+
 const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +60,7 @@ const html = `
   </body>
 </html>`
 
-console.log(html)
+// console.log(html)
 
 import { serve } from 'https://deno.land/std@0.62.0/http/server.ts'
 const s = serve({ port: 8080 })
