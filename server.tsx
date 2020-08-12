@@ -7,7 +7,9 @@ import {
 import Comments from './Comments.tsx'
 
 const [_, clientJs] = await Deno.bundle('./client.tsx', undefined, {
-  jsxFactory: 'h'
+  jsxFactory: 'h',
+  target: 'es2015',
+  module: 'es2015'
 })
 
 const comments = ['server side comment one']
