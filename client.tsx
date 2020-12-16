@@ -4,7 +4,7 @@ import {
   hydrate
 } from 'https://deno.land/x/nano_jsx@v0.0.11/deno_lib/core.ts'
 
-import Comments from './Comments.tsx'
+import Comments from './components/Comments.tsx'
 
 const comments = ['client side comment one', 'client side comment two']
 

@@ -1,12 +1,21 @@
 // @deno-types="./typings/global.d.ts"
-
 import {
   h,
   Helmet,
   renderSSR
 } from 'https://deno.land/x/nano_jsx@v0.0.11/mod.ts'
+import { render } from 'https://deno.land/x/nano_jsx@v0.0.11/deno_lib/core.ts'
+import { DocumentSSR } from 'https://deno.land/x/nano_jsx@v0.0.11/deno_lib/ssr.ts'
 import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
-import Comments from './Comments.tsx'
+
+// components
+import Comments from './components/Comments.tsx'
+import { Hello } from './components/Hello.tsx'
+
+// @ts-ignore
+globalThis.isSSR = true
+// @ts-ignore
+globalThis.document = new DocumentSSR()
 
 const [_, clientJs] = await Deno.bundle('./client.tsx', undefined, {
   jsxFactory: 'h',
@@ -30,14 +39,14 @@ const App = () => (
       <script src="/bundle.js"></script>
     </Helmet>
 
-    <h1>Hello nano!</h1>
+    <h2>Comments</h2>
     <div id="comments">
       <Comments comments={comments} />
     </div>
   </div>
 )
 
-const ssr = renderSSR(<App />)
+const ssr = render(<App />, null, true).join('')
 const { body, head, footer } = Helmet.SSR(ssr)
 
 const html = `
@@ -49,6 +58,7 @@ const html = `
     ${head.join('\n')}
   </head>
   <body>
+    ${render(<Hello />, null, true).join('')}
     ${body}
     ${footer.join('\n')}
     <script type="module" src="/bundle.js"></script>
@@ -71,8 +81,9 @@ app.use(router.allowedMethods())
 
 app.addEventListener('listen', ({ hostname, port, secure }) => {
   console.log(
-    `Listening on: ${secure ? 'https://' : 'http://'}${hostname ??
-      'localhost'}:${port}`
+    `Listening on: ${secure ? 'https://' : 'http://'}${
+      hostname ?? 'localhost'
+    }:${port}`
   )
 })
 
