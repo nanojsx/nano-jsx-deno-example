@@ -3,7 +3,7 @@ import {
   Helmet,
   renderSSR
 } from 'https://deno.land/x/nano_jsx@v0.0.11/mod.ts'
-
+import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
 import Comments from './Comments.tsx'
 
 const [_, clientJs] = await Deno.bundle('./client.tsx', undefined, {
@@ -35,8 +35,8 @@ const App = () => (
   </div>
 )
 
-const app = renderSSR(<App />)
-const { body, head, footer } = Helmet.SSR(app)
+const ssr = renderSSR(<App />)
+const { body, head, footer } = Helmet.SSR(ssr)
 
 const html = `
 <!DOCTYPE html>
@@ -53,19 +53,25 @@ const html = `
   </body>
 </html>`
 
-// console.log(html)
+const router = new Router()
+router
+  .get('/', context => {
+    context.response.body = html
+  })
+  .get('/bundle.js', context => {
+    context.response.body = clientJs
+    context.response.headers.set('Content-Type', 'text/javascript')
+  })
 
-import { serve } from 'https://deno.land/std@0.62.0/http/server.ts'
-const s = serve({ port: 8080 })
+const app = new Application()
+app.use(router.routes())
+app.use(router.allowedMethods())
 
-console.log('http://localhost:8080/')
+app.addEventListener('listen', ({ hostname, port, secure }) => {
+  console.log(
+    `Listening on: ${secure ? 'https://' : 'http://'}${hostname ??
+      'localhost'}:${port}`
+  )
+})
 
-for await (const req of s) {
-  const { method, url } = req
-
-  if (url === '/') req.respond({ body: html })
-  else if (url === '/bundle.js') {
-    req.headers.set('Content-Type', 'text/javascript')
-    req.respond({ body: clientJs, headers: req.headers })
-  } else req.respond({ body: 'not found', status: 404 })
-}
+await app.listen({ port: 8080 })
