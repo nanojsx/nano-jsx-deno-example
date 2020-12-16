@@ -1,3 +1,5 @@
+// @deno-types="./typings/global.d.ts"
+
 import {
   h,
   Helmet,
