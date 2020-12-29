@@ -3,19 +3,12 @@ import {
   h,
   Helmet,
   renderSSR
-} from 'https://deno.land/x/nano_jsx@v0.0.11/mod.ts'
-import { render } from 'https://deno.land/x/nano_jsx@v0.0.11/deno_lib/core.ts'
-import { DocumentSSR } from 'https://deno.land/x/nano_jsx@v0.0.11/deno_lib/ssr.ts'
+} from 'https://deno.land/x/nano_jsx@v0.0.14-dev.0/mod.ts'
 import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
 
 // components
 import Comments from './components/Comments.tsx'
 import { Hello } from './components/Hello.tsx'
-
-// @ts-ignore
-globalThis.isSSR = true
-// @ts-ignore
-globalThis.document = new DocumentSSR()
 
 const [_, clientJs] = await Deno.bundle('./client.tsx', undefined, {
   jsxFactory: 'h',
@@ -46,7 +39,7 @@ const App = () => (
   </div>
 )
 
-const ssr = render(<App />, null, true).join('')
+const ssr = renderSSR(<App />)
 const { body, head, footer } = Helmet.SSR(ssr)
 
 const html = `
@@ -58,7 +51,7 @@ const html = `
     ${head.join('\n')}
   </head>
   <body>
-    ${render(<Hello />, null, true).join('')}
+    ${renderSSR(<Hello />)}
     ${body}
     ${footer.join('\n')}
     <script type="module" src="/bundle.js"></script>
