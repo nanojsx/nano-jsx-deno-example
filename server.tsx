@@ -3,7 +3,7 @@ import {
   h,
   Helmet,
   renderSSR
-} from 'https://deno.land/x/nano_jsx@v0.0.14-dev.0/mod.ts'
+} from 'https://deno.land/x/nano_jsx@v0.0.14/mod.ts'
 import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
 
 // components
