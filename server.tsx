@@ -1,10 +1,9 @@
-// @deno-types="./typings/global.d.ts"
 import {
   h,
   Helmet,
   renderSSR
 } from 'https://deno.land/x/nano_jsx@v0.0.15/mod.ts'
-import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
+import { Application, Router } from 'https://deno.land/x/oak@v6.5.0/mod.ts'
 
 // components
 import Comments from './components/Comments.tsx'
