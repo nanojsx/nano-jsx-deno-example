@@ -3,17 +3,20 @@ import {
   h,
   Helmet,
   renderSSR
-} from 'https://deno.land/x/nano_jsx@v0.0.14/mod.ts'
+} from 'https://deno.land/x/nano_jsx@v0.0.15/mod.ts'
 import { Application, Router } from 'https://deno.land/x/oak/mod.ts'
 
 // components
 import Comments from './components/Comments.tsx'
 import { Hello } from './components/Hello.tsx'
 
-const [_, clientJs] = await Deno.bundle('./client.tsx', undefined, {
-  jsxFactory: 'h',
-  target: 'es2015',
-  module: 'es2015'
+const { files } = await Deno.emit('./client.tsx', {
+  bundle: 'esm',
+  compilerOptions: {
+    jsxFactory: 'h',
+    target: 'es2015',
+    module: 'es2015'
+  }
 })
 
 const comments = ['server side comment one']
@@ -64,7 +67,7 @@ router
     context.response.body = html
   })
   .get('/bundle.js', context => {
-    context.response.body = clientJs
+    context.response.body = files['deno:///bundle.js']
     context.response.headers.set('Content-Type', 'text/javascript')
   })
 

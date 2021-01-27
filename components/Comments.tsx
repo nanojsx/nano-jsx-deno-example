@@ -1,5 +1,5 @@
-import { h } from 'https://deno.land/x/nano_jsx@v0.0.14-dev.0/core.ts'
-import { Component } from 'https://deno.land/x/nano_jsx@v0.0.14-dev.0/component.ts'
+import { h } from 'https://deno.land/x/nano_jsx@v0.0.15/core.ts'
+import { Component } from 'https://deno.land/x/nano_jsx@v0.0.15/component.ts'
 
 class Comments extends Component {
   render() {
