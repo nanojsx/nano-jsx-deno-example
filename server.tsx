@@ -1,8 +1,4 @@
-import {
-  h,
-  Helmet,
-  renderSSR
-} from 'https://deno.land/x/nano_jsx@v0.0.15/mod.ts'
+import { h, Helmet, renderSSR } from 'https://deno.land/x/nano_jsx@v0.0.16/mod.ts'
 import { Application, Router } from 'https://deno.land/x/oak@v6.5.0/mod.ts'
 
 // components
@@ -24,10 +20,7 @@ const App = () => (
   <div>
     <Helmet>
       <title>Nano JSX SSR</title>
-      <meta
-        name="description"
-        content="Server Side Rendered Nano JSX Application"
-      />
+      <meta name="description" content="Server Side Rendered Nano JSX Application" />
     </Helmet>
 
     <Helmet footer>
@@ -75,11 +68,7 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 
 app.addEventListener('listen', ({ hostname, port, secure }) => {
-  console.log(
-    `Listening on: ${secure ? 'https://' : 'http://'}${
-      hostname ?? 'localhost'
-    }:${port}`
-  )
+  console.log(`Listening on: ${secure ? 'https://' : 'http://'}${hostname ?? 'localhost'}:${port}`)
 })
 
 await app.listen({ port: 8080 })

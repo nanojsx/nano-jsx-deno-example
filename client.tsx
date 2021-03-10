@@ -1,5 +1,5 @@
-import 'https://deno.land/x/nano_jsx@v0.0.15/types.ts'
-import { h, hydrate } from 'https://deno.land/x/nano_jsx@v0.0.15/core.ts'
+import 'https://deno.land/x/nano_jsx@v0.0.16/types.ts'
+import { h, hydrate } from 'https://deno.land/x/nano_jsx@v0.0.16/core.ts'
 
 import Comments from './components/Comments.tsx'
 
