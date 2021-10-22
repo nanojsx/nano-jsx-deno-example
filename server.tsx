@@ -6,7 +6,7 @@ import Comments from './components/Comments.tsx'
 import { Hello } from './components/Hello.tsx'
 
 const { files } = await Deno.emit('./client.tsx', {
-  bundle: 'esm',
+  bundle: 'module',
   compilerOptions: {
     jsxFactory: 'h',
     target: 'es2015',
