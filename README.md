@@ -1,6 +1,6 @@
 # Isomorphic Nano JSX with Deno
 
-Works with Deno >= 1.7.0
+Tested with Deno v1.16.2
 
 ## Server Side Rendering with Partial Hydration
 
