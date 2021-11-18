@@ -1,5 +1,5 @@
-import { h, Helmet, renderSSR } from 'https://deno.land/x/nano_jsx@v0.0.16/mod.ts'
-import { Application, Router } from 'https://deno.land/x/oak@v6.5.0/mod.ts'
+import { h, renderSSR, Helmet } from './nano.ts'
+import { Application, Router } from 'https://deno.land/x/oak@v10.0.0/mod.ts'
 
 // components
 import Comments from './components/Comments.tsx'
