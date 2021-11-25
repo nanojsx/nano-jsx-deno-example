@@ -1,5 +1,5 @@
 import { h, renderSSR, Helmet } from './nano.ts'
-import { Application, Router } from 'https://deno.land/x/oak@v10.0.0/mod.ts'
+import { serve } from 'https://deno.land/std@0.116.0/http/server.ts'
 
 // components
 import Comments from './components/Comments.tsx'
@@ -53,22 +53,19 @@ const html = `
   </body>
 </html>`
 
-const router = new Router()
-router
-  .get('/', context => {
-    context.response.body = html
-  })
-  .get('/bundle.js', context => {
-    context.response.body = files['deno:///bundle.js']
-    context.response.headers.set('Content-Type', 'text/javascript')
-  })
+const addr = ':8080'
 
-const app = new Application()
-app.use(router.routes())
-app.use(router.allowedMethods())
+const handler = (request: Request): Response => {
+  if (request.url === 'http://localhost:8080/') {
+    return new Response(html, { headers: { 'Content-Type': 'text/html' } })
+  }
 
-app.addEventListener('listen', ({ hostname, port, secure }) => {
-  console.log(`Listening on: ${secure ? 'https://' : 'http://'}${hostname ?? 'localhost'}:${port}`)
-})
+  if (request.url === 'http://localhost:8080/bundle.js') {
+    return new Response(files['deno:///bundle.js'], { headers: { 'Content-Type': 'application/javascript' } })
+  }
 
-await app.listen({ port: 8080 })
+  return new Response('404', { status: 404 })
+}
+
+console.log(`HTTP webserver running. Access it at: http://localhost:8080/`)
+await serve(handler, { addr })
