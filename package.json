@@ -1,6 +1,6 @@
 {
   "name": "nano-jsx-deno",
   "scripts": {
-    "start": "deno run --no-check --allow-net --allow-read --unstable --config tsconfig.json server.tsx"
+    "start": "deno run --allow-net --config tsconfig.json index.tsx"
   }
 }

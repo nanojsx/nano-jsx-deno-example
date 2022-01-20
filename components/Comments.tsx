@@ -1,6 +1,6 @@
-import { Component, h } from '../nano.ts'
+import { h, Component } from '../nano.ts'
 
-class Comments extends Component {
+export class Comments extends Component {
   render() {
     return (
       <ul>
@@ -11,5 +11,3 @@ class Comments extends Component {
     )
   }
 }
-
-export default Comments

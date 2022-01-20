@@ -1,7 +1,6 @@
-# Isomorphic Nano JSX with Deno
+# Nano JSX with Deno
 
-Tested with Deno v1.16.2
+Tested with Deno v1.17.3
 
-## Server Side Rendering with Partial Hydration
-
-- Client Bundle is not minified nor compressed.
+- Run: `deno run --allow-net --config tsconfig.json server.tsx`
+- Open: [http://localhost:8080/](http://localhost:8080/)
