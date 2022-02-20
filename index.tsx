@@ -1,5 +1,5 @@
-import { h, renderSSR, Helmet } from './nano.ts'
-import { serve } from 'https://deno.land/std@0.116.0/http/server.ts'
+import { h, renderSSR, Helmet } from './deps.ts'
+import { Application, Router } from './deps.ts'
 
 import { Comments } from './components/Comments.tsx'
 import { Hello } from './components/Hello.tsx'
@@ -40,15 +40,17 @@ const html = `
   </body>
 </html>`
 
-const addr = ':8080'
+const router = new Router()
+router.get('/', context => {
+  context.response.body = html
+})
 
-const handler = (request: Request): Response => {
-  if (request.url === 'http://localhost:8080/') {
-    return new Response(html, { headers: { 'Content-Type': 'text/html' } })
-  }
+const app = new Application()
+app.use(router.routes())
+app.use(router.allowedMethods())
 
-  return new Response('404', { status: 404 })
-}
+app.addEventListener('listen', ({ port }) => {
+  console.log(`Listening on: http://localhost:${port}`)
+})
 
-console.log(`HTTP webserver running. Access it at: http://localhost:8080/`)
-await serve(handler, { addr })
+await app.listen({ port: 5000 })

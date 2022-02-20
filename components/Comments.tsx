@@ -1,4 +1,4 @@
-import { h, Component } from '../nano.ts'
+import { h, Component } from '../deps.ts'
 
 export class Comments extends Component {
   render() {
