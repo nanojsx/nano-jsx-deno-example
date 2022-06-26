@@ -13,7 +13,7 @@ const App = () => (
       <meta name="description" content="Server Side Rendered Nano JSX Application" />
     </Helmet>
 
-    <Hello />
+    <Hello name="Nano App" />
 
     <h2>Comments</h2>
 
