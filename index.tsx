@@ -1,5 +1,5 @@
 import { h, renderSSR, Helmet } from './deps.ts'
-import { Application, Router } from './deps.ts'
+import { Router, Application } from 'https://deno.land/x/oak@v10.6.0/mod.ts'
 
 import { Comments } from './components/Comments.tsx'
 import { Hello } from './components/Hello.tsx'
@@ -15,11 +15,7 @@ const App = () => (
 
     <Hello name="Nano App" />
 
-    <h2>Comments</h2>
-
-    <div id="comments">
-      <Comments comments={comments} />
-    </div>
+    <Comments comments={comments} />
   </div>
 )
 
@@ -37,6 +33,7 @@ const html = `
   <body>
     ${body}
     ${footer.join('\n')}
+    <script src="/bundle.js"></script>
   </body>
 </html>`
 
@@ -48,6 +45,16 @@ router.get('/', context => {
 const app = new Application()
 app.use(router.routes())
 app.use(router.allowedMethods())
+
+// static content (serve islands)
+app.use(async (context, next) => {
+  const root = `${Deno.cwd()}/islands`
+  try {
+    await context.send({ root })
+  } catch {
+    next()
+  }
+})
 
 app.addEventListener('listen', ({ port }) => {
   console.log(`Listening on: http://localhost:${port}`)

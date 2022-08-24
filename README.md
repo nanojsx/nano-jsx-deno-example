@@ -1,6 +1,7 @@
 # Nano JSX with Deno (with oak)
 
-Tested with Deno v1.23.0
+Tested with Deno v1.24.3
 
-- Run: `deno run --allow-net index.tsx` or `deno task start`
+- Build the "islands": `deno task island`
+- Run: `deno run --allow-net --allow-read index.tsx` or `deno task start`
 - Open: [http://localhost:5000/](http://localhost:5000/)

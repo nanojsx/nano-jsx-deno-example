@@ -1,6 +1,7 @@
 {
   "tasks": {
-    "start": "deno run --allow-net index.tsx"
+    "start": "deno run --allow-net --allow-read index.tsx",
+    "island": "deno bundle ./islands/index.ts ./islands/bundle.js"
   },
   "compilerOptions": {
     "lib": [
