@@ -1,4 +1,4 @@
-import { h, render, Component } from '../deps.ts'
+import { h, render, Component } from 'nano-jsx'
 
 export class Comments extends Component {
   didMount() {

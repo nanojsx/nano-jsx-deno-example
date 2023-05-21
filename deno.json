@@ -3,6 +3,10 @@
     "start": "deno run --allow-net --allow-read index.tsx",
     "island": "deno bundle ./islands/index.ts ./islands/bundle.js"
   },
+  "imports": {
+    "nano-jsx": "https://deno.land/x/nano_jsx@v0.0.34/mod.ts",
+    "oak": "https://deno.land/x/oak@v10.6.0/mod.ts"
+  },
   "compilerOptions": {
     "lib": [
       "dom",
