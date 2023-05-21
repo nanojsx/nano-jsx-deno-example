@@ -1,4 +1,4 @@
-import { h, render, Component } from 'nano-jsx'
+import { render, Component } from 'nano-jsx'
 
 export class Comments extends Component {
   didMount() {

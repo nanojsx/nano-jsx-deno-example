@@ -4,7 +4,7 @@
     "island": "deno bundle ./islands/index.ts ./islands/bundle.js"
   },
   "imports": {
-    "nano-jsx": "https://deno.land/x/nano_jsx@v0.0.34/mod.ts",
+    "nano-jsx": "npm:nano-jsx@0.0.37",
     "oak": "https://deno.land/x/oak@v10.6.0/mod.ts"
   },
   "compilerOptions": {
@@ -14,7 +14,7 @@
       "dom.asynciterable",
       "deno.ns"
     ],
-    "jsxFactory": "h",
-    "jsxFragmentFactory": "Fragment"
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:nano-jsx@0.0.37/esm"
   }
 }

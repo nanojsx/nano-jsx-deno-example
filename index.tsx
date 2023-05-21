@@ -1,4 +1,4 @@
-import { h, renderSSR, Helmet } from 'nano-jsx'
+import { renderSSR, Helmet } from 'nano-jsx'
 import { Router, Application } from 'oak'
 
 import { Comments } from './components/Comments.tsx'

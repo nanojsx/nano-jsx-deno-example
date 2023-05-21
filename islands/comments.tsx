@@ -1,5 +1,5 @@
 import { Comments } from '../components/Comments.tsx'
-import { h, hydrate } from 'nano-jsx'
+import { hydrate } from 'nano-jsx'
 
 const comments = ['Hey! This is the first comment.', 'Hi, from another comment!']
 
